@@ -34,6 +34,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=100, blank=False, default='')
     owner = models.ForeignKey('auth.User', related_name='tags', on_delete=models.CASCADE)
     posts = models.ManyToManyField('Post', related_name='tags', blank=True)
+    description = models.TextField(default='')
 
     class Meta:
         verbose_name_plural = 'tags'
