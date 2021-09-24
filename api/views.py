@@ -6,6 +6,7 @@ from api.models import Comment
 from api.models import Category
 from api.models import Tag
 from api.permissions import IsOwnerOrReadOnly
+import django_filters.rest_framework
 
 
 class UserList(generics.ListAPIView):
@@ -22,6 +23,8 @@ class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['tags', 'created']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
