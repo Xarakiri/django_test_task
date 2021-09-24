@@ -23,9 +23,10 @@ class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['tags', 'created']
     search_fields = ['title', 'body']
+    ordering_fields = ['created', 'tags']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
