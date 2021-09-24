@@ -33,7 +33,8 @@ class CommentSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    number_of_posts = serializers.ReadOnlyField(source='posts.count')
 
     class Meta:
         model = Category
-        fields = ['id', 'name', 'owner', 'posts']
+        fields = ['id', 'name', 'owner', 'posts', 'number_of_posts']
