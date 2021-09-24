@@ -7,7 +7,7 @@ from api.models import Category
 from api.models import Tag
 from api.permissions import IsOwnerOrReadOnly
 import django_filters.rest_framework
-
+from rest_framework import filters
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
@@ -23,8 +23,9 @@ class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['tags', 'created']
+    search_fields = ['title', 'body']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
