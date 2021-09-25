@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'django_filters',
     'psycopg2',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

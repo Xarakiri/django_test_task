@@ -15,4 +15,10 @@ This README would normally document whatever steps are necessary to get your app
 `docker-compose build`  
 `docker-compose up`
 
+### Документация ###
+Документация доступна по ссылке
+`http://localhost:8000/swagger/`
 
+![Screenshot](1.png)
+
+По умолчанию создается пользователь с ником `admin` и паролем `admin`.

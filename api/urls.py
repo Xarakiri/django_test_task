@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework import urlpatterns
 from rest_framework.urlpatterns import format_suffix_patterns
 from api import views
+from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('users/', views.UserList.as_view()),
@@ -16,4 +17,6 @@ urlpatterns = [
     path('tags/<int:pk>', views.TagDetail.as_view()),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns += doc_urls
+
+# urlpatterns = format_suffix_patterns(urlpatterns)
