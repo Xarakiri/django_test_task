@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.apps.ApiConfig',
     'django_filters',
+    'psycopg2',
 ]
 
 MIDDLEWARE = [
@@ -78,14 +79,12 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'xara',
-        'USER': 'xara',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'api_db',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'postgresdb',
+        'PORT': 5432,
     }
 }
 
